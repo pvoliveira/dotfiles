@@ -1,0 +1,21 @@
+[diff]
+	tool = difftastic
+	external = difft
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+	difftool = true
+[user]
+	signingkey = "~/.ssh/id_ed25519.pub"
+	name = "Paulo Oliveira"
+[core]
+	editor = hx
+[rerere]
+	enabled = true
+[merge]
+	renormalize = true

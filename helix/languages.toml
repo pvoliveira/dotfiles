@@ -1,0 +1,66 @@
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+
+[[language]]
+name = "markdown"
+language-servers = [ "markdown-oxide" ] 
+
+[language-server.markdown-oxide]
+command = "markdown-oxide"
+
+[[language]]
+name = "yaml"
+file-types = ["yaml", "yml"]
+language-servers = [ "yaml-language-server" ]
+auto-format = false
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+
+[language-server.yaml-language-server]
+command = "node"
+args = [
+  "/home/paulo/dev/yaml-language-server/out/server/src/server.js",
+  "--stdio"
+]
+
+[language-server.yaml-language-server.config.yaml]
+completion = true
+validation = true
+hover = true
+
+## If I uncomment this I get errors
+# [language-server.yaml-language-server.config.yaml.schemaStore]
+# enable = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+kubernetes = [ "*deployment*.yaml",
+ "*service*.yaml",
+ "*configmap*.yaml",
+ "*secret*.yaml",
+ "*pod*.yaml",
+ "*namespace*.yaml",
+ "*ingress*.yaml" 
+]
+"https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/kustomization.json" = [
+  "*kustomization.yaml",
+  "*kustomize.yaml"
+]
+"https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" = [
+  "*workflow*.yaml",
+  "*template*.yaml"
+]
+
+[language-server.yaml-language-server.config]
+provideFormatter = true
+json = { "keepLines" = { "enable" = true } }
+
+[[language]]
+name = "json"
+auto-format = false
+
+[[language]]
+name = "cpp"
+auto-format = false
+file-types = ["cc", "hh", "c++", "cpp", "hpp", "h", "ipp", "tpp", "cxx", "hxx", "ixx", "txx", "ino", "C", "H", "cu", "cuh", "cppm", "h++", "ii", "inl", { glob = ".hpp.in" }, { glob = ".h.in" }, "CPP", "HPP"]
+indent = { tab-width = 4, unit = "    " }
